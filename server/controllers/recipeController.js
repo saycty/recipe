@@ -102,6 +102,24 @@ exports.exploreLatest = async (req, res) => {
   }
 };
 
+
+
+
+/*
+get /explore-random
+Explore Random as json
+*/
+exports.exploreRandom = async (req, res) => {
+  try {
+    let count=await Recipe.find().countDocuments();
+    let random=Math.floor(Math.random()*count);
+    let recipe=await Recipe.findOne().skip(random).exec();
+    res.render("explore-random", { title: "cooking Blog-Explore ", recipe });
+  } catch (error) {
+    res.status(500).send({ message: error.message || "Error Occured" });
+  }
+}
+
 // async function insertDummyCategoryData(){
 //     try {
 //         await Category.insertMany([
