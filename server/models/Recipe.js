@@ -19,7 +19,7 @@ const recipeSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum:['Thai','American','Chinese','Mexican','Indian'],
+    enum:['Indian','Thai','American','Chinese','Mexican'],
     required: 'This field is required.'
   },
   image: {
@@ -27,5 +27,10 @@ const recipeSchema = new mongoose.Schema({
     required: 'This field is required.'
   }
 });
+
+recipeSchema.index({name:'text',description:'text'});
+//wildcard index
+//recipeSchema.index({"$**":'text'});
+
 
 module.exports = mongoose.model('Recipe', recipeSchema);
