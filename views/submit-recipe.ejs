@@ -9,6 +9,12 @@
 </div>
 
 <div class="row justify-content-center">
+  <% if(infoSubmitObj!=''){%>
+  <div class="col-8 alert alert-success" role="alert"><%=infoSubmitObj %></div>
+  <%}%> <% if(infoErrorsObj!=''){%>
+  <div class="col-8 alert alert-danger" role="alert"><%=infoErrorsObj[0].message %></div>
+  <%}%>
+
   <div class="col-8">
     <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
       <div class="row g-3">
@@ -18,7 +24,7 @@
         </div>
         <div class="coll-12">
           <label for="name" class="form-label">Recipe Name</label>
-          <input type="text" name="name" id="name" class="form-control" />
+          <input type="text" name="name" id="name" class="form-control" required/>
         </div>
         <div class="coll-12">
           <label for="description" class="form-label">Description</label>
@@ -35,7 +41,7 @@
           <small>Example: Ice</small>
           <div class="IngredientList">
             <div class="IngredientDiv" mb-1>
-              <input type="text" name="ingredients" class="form-control"/>
+              <input type="text" name="ingredients" class="form-control" />
             </div>
           </div>
         </div>
